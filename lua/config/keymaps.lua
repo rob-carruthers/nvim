@@ -10,7 +10,14 @@ vim.keymap.set({ "n", "v" }, "ge", "G", { desc = "Go to end of file" })
 -- LSP actions, ported from helix
 -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 -- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
-vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover" })
+vim.keymap.set("n", "<leader>k", function()
+  vim.lsp.buf.hover {
+    border = "single",
+    max_height = 20,
+    max_width = 130,
+    close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" },
+  }
+end, { desc = "Hover" })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
 -- vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code actions" })
 
