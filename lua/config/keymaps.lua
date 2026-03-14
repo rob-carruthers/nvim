@@ -2,10 +2,10 @@
 vim.keymap.set("n", "U", "<C-r>")
 
 -- Line navigation
-vim.keymap.set("n", "gh", "0")
-vim.keymap.set("n", "gs", "^")
-vim.keymap.set("n", "gl", "$")
-vim.keymap.set("n", "ge", "G")
+vim.keymap.set({ "n", "v" }, "gh", "0")
+vim.keymap.set({ "n", "v" }, "gs", "^")
+vim.keymap.set({ "n", "v" }, "gl", "$")
+vim.keymap.set({ "n", "v" }, "ge", "G")
 
 -- LSP actions, ported from helix
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
