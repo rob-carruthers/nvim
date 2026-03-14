@@ -1,3 +1,10 @@
+-- Yanks/pastes
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste after (from system clipboard)" })
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste at (from system clipboard)" })
+vim.keymap.set("v", "R", '"_dP', { desc = "Replace selection with default register" })
+vim.keymap.set("v", "<leader>R", '"+_dP', { desc = "Replace selection with system clipboard" })
+
 -- Redo
 vim.keymap.set("n", "U", "<C-r>")
 
@@ -6,6 +13,25 @@ vim.keymap.set({ "n", "v" }, "gh", "0", { desc = "Go to beginning of line" })
 vim.keymap.set({ "n", "v" }, "gs", "^", { desc = "Go to beginning of content of line" })
 vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to end of line" })
 vim.keymap.set({ "n", "v" }, "ge", "G", { desc = "Go to end of file" })
+
+-- Helix-style line selection (supports count prefixes)
+local function select_lines(count)
+  count = count or 1
+  vim.api.nvim_feedkeys("V", "n", false)
+  if count > 1 then
+    local keys = string.rep("j", count - 1)
+    vim.api.nvim_feedkeys(keys, "n", false)
+  end
+end
+
+vim.keymap.set("n", "x", function()
+  local count = vim.v.count1
+  select_lines(count)
+end, { desc = "Helix-style line selection" })
+
+-- Incremental selection: in visual mode, 'x' moves selection down
+vim.keymap.set("v", "x", "j", { desc = "Extend line selection downward" })
+
 
 -- LSP actions, ported from helix
 -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
