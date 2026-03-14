@@ -13,3 +13,8 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover" })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code actions" })
+
+-- Bufferline
+vim.keymap.set("n", "<A-PageDown>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<A-PageUp>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<A-w>", "<cmd>bdelete<CR>", { desc = "Close buffer" })
