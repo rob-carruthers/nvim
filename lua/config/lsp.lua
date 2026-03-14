@@ -1,4 +1,6 @@
 vim.diagnostic.config({
+  -- with update_in_insert, the diagnostic gutter is retained while in insert mode
+  update_in_insert = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '●',
