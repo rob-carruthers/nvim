@@ -23,6 +23,16 @@ return {
       vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
     end)
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-    require("ibl").setup { scope = { highlight = highlight }, indent = { highlight = highlight } }
+    require("ibl").setup({
+      scope = {
+        highlight = highlight,
+        char = "▏"
+      },
+      indent = {
+        highlight = highlight,
+        char = "▏"
+      },
+    }
+    )
   end
 }
