@@ -14,35 +14,42 @@ vim.keymap.set({ "n", "v" }, "gs", "^", { desc = "Go to beginning of content of 
 vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to end of line" })
 vim.keymap.set({ "n", "v" }, "ge", "G", { desc = "Go to end of file" })
 
--- Helix-style line selection (supports count prefixes)
-local function select_lines(count)
+-- Incremental line selection with counts
+local function helix_select_lines(count)
   count = count or 1
-  vim.api.nvim_feedkeys("V", "n", false)
-  if count > 1 then
-    local keys = string.rep("j", count - 1)
-    vim.api.nvim_feedkeys(keys, "n", false)
+  local mode = vim.fn.mode()
+
+  if mode == "n" then
+    -- normal mode: start visual line selection
+    vim.api.nvim_feedkeys("V", "n", false)
+    if count > 1 then
+      vim.api.nvim_feedkeys(string.rep("j", count - 1), "n", false)
+    end
+  elseif mode == "V" or mode == "v" then
+    -- visual mode: extend selection downward
+    vim.api.nvim_feedkeys(string.rep("j", count), "v", false)
   end
 end
 
+-- Map 'x' in normal and visual modes
 vim.keymap.set("n", "x", function()
-  local count = vim.v.count1
-  select_lines(count)
+  helix_select_lines(vim.v.count1)
 end, { desc = "Helix-style line selection" })
 
--- Incremental selection: in visual mode, 'x' moves selection down
-vim.keymap.set("v", "x", "j", { desc = "Extend line selection downward" })
-
+vim.keymap.set("v", "x", function()
+  helix_select_lines(vim.v.count1)
+end, { desc = "Extend line selection downward" })
 
 -- LSP actions, ported from helix
 -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 -- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
 vim.keymap.set("n", "<leader>k", function()
-  vim.lsp.buf.hover {
+  vim.lsp.buf.hover({
     border = "single",
     max_height = 20,
     max_width = 130,
     close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" },
-  }
+  })
 end, { desc = "Hover" })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
 -- vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Code actions" })
