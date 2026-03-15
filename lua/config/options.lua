@@ -4,6 +4,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- disable netrw directory browser
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
