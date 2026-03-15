@@ -1,9 +1,11 @@
 -- Yanks/pastes
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste after (from system clipboard)" })
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste at (from system clipboard)" })
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste after (clipboard)" })
+vim.keymap.set("v", "<leader>p", '"_d"+p', { desc = "Replace selection with clipboard" })
+vim.keymap.set("n", "<leader>P", '"+P', { desc = "Paste before (clipboard)" })
+vim.keymap.set("v", "<leader>P", '"_d"+P', { desc = "Replace selection with clipboard" })
 vim.keymap.set("v", "R", '"_dP', { desc = "Replace selection with default register" })
-vim.keymap.set("v", "<leader>R", '"+_dP', { desc = "Replace selection with system clipboard" })
+vim.keymap.set("v", "<leader>R", '"+p', { desc = "Replace selection with system clipboard" })
 
 -- Redo
 vim.keymap.set("n", "U", "<C-r>")
