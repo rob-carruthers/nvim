@@ -6,3 +6,6 @@ vim.opt.relativenumber = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- enable two slots in the sign gutter column; diagnostics and gitsigns
+vim.opt.signcolumn = "yes:2"

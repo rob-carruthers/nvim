@@ -13,6 +13,7 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
       [vim.diagnostic.severity.WARN] = 'WarningMsg',
     },
+    priority = 4,
   },
   virtual_lines = true,
   virtual_text = false
