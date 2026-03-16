@@ -5,7 +5,7 @@ vim.keymap.set("v", "<leader>p", '"_d"+p', { desc = "Replace selection with clip
 vim.keymap.set("n", "<leader>P", '"+P', { desc = "Paste before (clipboard)" })
 vim.keymap.set("v", "<leader>P", '"_d"+P', { desc = "Replace selection with clipboard" })
 vim.keymap.set("v", "R", '"_dP', { desc = "Replace selection with default register" })
-vim.keymap.set("v", "<leader>R", '"+p', { desc = "Replace selection with system clipboard" })
+vim.keymap.set("v", "<leader>R", '"_d"+p', { desc = "Replace selection with system clipboard" })
 
 -- Redo
 vim.keymap.set("n", "U", "<C-r>")
