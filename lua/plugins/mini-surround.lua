@@ -5,10 +5,9 @@ return {
   config = function()
     require("mini.surround").setup({
       mappings = {
-        add = "ms", -- add surround
-        delete = "md", -- delete surround
-        replace = "mr", -- replace surround
-
+        add = "ms",
+        delete = "md",
+        replace = "mr",
         find = "",
         find_left = "",
         highlight = "",
@@ -16,10 +15,13 @@ return {
       },
     })
     require("which-key").add({
-      { "m", group = "surround", mode = { "n", "v" } },
+      { "m", group = "match/surround", mode = { "n", "v" } },
       { "ms", desc = "Add surround", mode = { "n", "v" } },
       { "md", desc = "Delete surround", mode = { "n", "v" } },
       { "mr", desc = "Replace surround", mode = { "n", "v" } },
+      { "mm", desc = "Matching bracket", mode = { "n", "v" } },
+      { "mi", desc = 'Select inside (mi( mi" etc)', mode = { "n", "v" } },
+      { "ma", desc = 'Select around (ma( ma" etc)', mode = { "n", "v" } },
     })
   end,
 }
