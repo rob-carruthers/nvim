@@ -46,6 +46,13 @@ vim.keymap.set("v", "x", function()
   helix_select_lines(vim.v.count1)
 end, { desc = "Extend line selection downward" })
 
+-- mi == vi
+vim.keymap.set({ "n", "v" }, "mi", "vi", { desc = "Select inside", remap = true })
+vim.keymap.set({ "n", "v" }, "ma", "va", { desc = "Select around", remap = true })
+
+-- flip selection cursor location
+vim.keymap.set("v", "<A-;>", "o", { desc = "Flip selection cursor" })
+
 -- LSP actions, ported from helix
 -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 -- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
