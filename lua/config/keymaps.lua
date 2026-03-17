@@ -83,3 +83,5 @@ vim.keymap.set("n", "<leader>/", "<cmd>FzfLua live_grep<CR>", { desc = "Grep pic
 vim.keymap.set("n", "<leader>a", "<cmd>FzfLua lsp_code_actions<CR>", { desc = "Code actions" })
 vim.keymap.set("n", "<leader>s", "<cmd>FzfLua lsp_document_symbols<CR>", { desc = "Symbol picker" })
 vim.keymap.set("n", "<leader>S", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", { desc = "Symbol picker" })
+
+vim.keymap.set({ "n", "x", "o" }, "gw", "<Plug>(leap)")
