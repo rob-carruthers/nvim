@@ -13,7 +13,7 @@ return {
       "RainbowDelimiterCyan",
     }
     local hooks = require("ibl.hooks")
-    hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    local function set_rainbow_highlights()
       vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#C5727A" })
       vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#EFD49F" })
       vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#81A1C1" })
@@ -21,15 +21,23 @@ return {
       vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#B1C89D" })
       vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#BE9DB8" })
       vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#9FC6C5" })
-    end)
+    end
+
+    set_rainbow_highlights()
+
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = set_rainbow_highlights,
+    })
+
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     require("ibl").setup({
       scope = {
+        enabled = false,
         highlight = highlight,
-        char = "▏",
+        show_start = false,
+        show_end = false,
       },
       indent = {
-        highlight = highlight,
         char = "▏",
       },
     })

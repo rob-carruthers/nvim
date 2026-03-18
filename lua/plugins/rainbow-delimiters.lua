@@ -1,6 +1,7 @@
 return {
   "HiPhish/rainbow-delimiters.nvim",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  lazy = false,
   config = function()
     ---@type rainbow_delimiters.config
     vim.g.rainbow_delimiters = {
