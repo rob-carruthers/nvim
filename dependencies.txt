@@ -1,0 +1,12 @@
+curl
+fd
+gcc
+make
+lua-language-server
+neovim
+ripgrep
+skim
+stylua
+tree-sitter
+unzip
+
