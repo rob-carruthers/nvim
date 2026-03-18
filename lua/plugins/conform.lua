@@ -9,12 +9,8 @@ return {
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        -- Conform will run multiple formatters sequentially
-        python = { "ruff" },
-        -- You can customize some of the format options for the filetype (:help conform.format)
+        python = { "ruff_format", "ruff_organize_imports" },
         rust = { "rustfmt", lsp_format = "fallback" },
-        -- Conform will run the first available formatter
-        javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     })
   end,
