@@ -14,13 +14,13 @@ return {
     }
     local hooks = require "ibl.hooks"
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-      vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#E06C75" })
-      vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#E5C07B" })
-      vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#61AFEF" })
-      vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D19A66" })
-      vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#98C379" })
-      vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#C678DD" })
-      vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#56B6C2" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#C5727A" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#EFD49F" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterBlue", { fg = "#81A1C1" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterOrange", { fg = "#D79784" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#B1C89D" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#BE9DB8" })
+      vim.api.nvim_set_hl(0, "RainbowDelimiterCyan", { fg = "#9FC6C5" })
     end)
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     require("ibl").setup({
