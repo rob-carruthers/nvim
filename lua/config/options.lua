@@ -16,3 +16,8 @@ vim.g.loaded_netrwPlugin = 1
 
 -- enable two slots in the sign gutter column; diagnostics and gitsigns
 vim.opt.signcolumn = "yes:2"
+
+-- indent options
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.expandtab = true
