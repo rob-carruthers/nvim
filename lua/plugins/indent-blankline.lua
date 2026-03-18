@@ -12,7 +12,7 @@ return {
       "RainbowDelimiterViolet",
       "RainbowDelimiterCyan",
     }
-    local hooks = require "ibl.hooks"
+    local hooks = require("ibl.hooks")
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
       vim.api.nvim_set_hl(0, "RainbowDelimiterRed", { fg = "#C5727A" })
       vim.api.nvim_set_hl(0, "RainbowDelimiterYellow", { fg = "#EFD49F" })
@@ -26,13 +26,12 @@ return {
     require("ibl").setup({
       scope = {
         highlight = highlight,
-        char = "▏"
+        char = "▏",
       },
       indent = {
         highlight = highlight,
-        char = "▏"
+        char = "▏",
       },
-    }
-    )
-  end
+    })
+  end,
 }
