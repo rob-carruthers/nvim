@@ -4,6 +4,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- use persistent undofile
+vim.opt.undofile = true
+
 -- ruler
 vim.opt.colorcolumn = "100"
 
