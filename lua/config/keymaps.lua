@@ -16,6 +16,9 @@ vim.keymap.set({ "n", "v" }, "gs", "^", { desc = "Go to beginning of content of 
 vim.keymap.set({ "n", "v" }, "gl", "$", { desc = "Go to end of line" })
 vim.keymap.set({ "n", "v" }, "ge", "G", { desc = "Go to end of file" })
 
+-- Select all
+vim.keymap.set({ "n", "v" }, "%", "ggVG", { desc = "Select all" })
+
 -- Comments
 vim.keymap.set({ "n" }, "<C-c>", "Vgc", { desc = "Comment line", remap = true })
 vim.keymap.set({ "v" }, "<C-c>", "gc", { desc = "Comment selection", remap = true })
