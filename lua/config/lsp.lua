@@ -15,9 +15,15 @@ vim.diagnostic.config({
     },
     priority = 4,
   },
+  undercurl = {
+    severity = {
+      min = vim.diagnostic.severity.HINT,
+    },
+  },
   virtual_lines = true,
   virtual_text = false,
 })
+vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { undercurl = true })
 vim.lsp.enable("ruff")
 vim.lsp.enable("ty")
 vim.lsp.config["lua_ls"] = {
