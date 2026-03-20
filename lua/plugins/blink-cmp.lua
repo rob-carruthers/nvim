@@ -1,11 +1,11 @@
 return {
 
-  'saghen/blink.cmp',
+  "saghen/blink.cmp",
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = { "rafamadriz/friendly-snippets" },
 
   -- use a release tag to download pre-built binaries
-  version = '1.*',
+  version = "1.*",
   -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
   -- build = 'cargo build --release',
   -- If you use nix, you can build from source using latest nightly rust with:
@@ -14,33 +14,97 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-    -- 'super-tab' for mappings similar to vscode (tab to accept)
-    -- 'enter' for enter to accept
-    -- 'none' for no mappings
-    --
-    -- All presets have the following mappings:
-    -- C-space: Open menu or open docs if already open
-    -- C-n/C-p or Up/Down: Select next/previous item
-    -- C-e: Hide menu
-    -- C-k: Toggle signature help (if signature.enabled = true)
-    --
-    -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = 'default' },
-
+    keymap = {
+      preset = "enter",
+      ["<Tab>"] = {
+        function(cmp)
+          if cmp.is_menu_visible() then
+            return require("blink.cmp").select_next()
+          elseif cmp.snippet_active() then
+            return cmp.snippet_forward()
+          end
+        end,
+        "fallback",
+      },
+      ["<S-Tab>"] = {
+        function(cmp)
+          if cmp.is_menu_visible() then
+            return require("blink.cmp").select_prev()
+          elseif cmp.snippet_active() then
+            return cmp.snippet_backward()
+          end
+        end,
+        "fallback",
+      },
+      ["<C-k>"] = {},
+    },
+    signature = {
+      enabled = true,
+      window = {
+        border = "rounded",
+        scrollbar = false,
+      },
+    },
     appearance = {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
-      nerd_font_variant = 'mono'
+      nerd_font_variant = "mono",
     },
 
     -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = false } },
+    completion = {
+      keyword = {
+        range = "prefix",
+      },
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = true,
+        },
+      },
+      accept = {
+        auto_brackets = {
+          enabled = true,
+          override_brackets_for_filetypes = {
+            tex = { "{", "}" },
+          },
+        },
+      },
+      menu = {
+        min_width = 20,
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+        draw = {
+          columns = { { "kind_icon" }, { "label", gap = 1 }, { "source" } },
+          components = {
+            source = {
+              text = function(ctx)
+                local map = {
+                  ["lsp"] = "[]",
+                  ["path"] = "[󰉋]",
+                  ["snippets"] = "[]",
+                }
 
+                return map[ctx.item.source_id]
+              end,
+              highlight = "BlinkCmpDoc",
+            },
+          },
+        },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 100,
+        update_delay_ms = 50,
+        window = {
+          max_width = math.min(80, vim.o.columns),
+          border = "rounded",
+        },
+      },
+    },
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { "lsp", "path", "snippets", "buffer" },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -48,9 +112,7 @@ return {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = { implementation = "prefer_rust_with_warning" },
   },
-  opts_extend = { "sources.default" }
-
-
+  opts_extend = { "sources.default" },
 }
