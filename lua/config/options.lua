@@ -21,3 +21,6 @@ vim.opt.signcolumn = "yes:2"
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.expandtab = true
+
+-- disable mouse
+vim.opt.mouse = ""
